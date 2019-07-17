@@ -1,3 +1,5 @@
+var dist_dir = __dirname + '/dist';
+
 var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
@@ -11,19 +13,20 @@ module.exports = {
         libraryTarget: "umd"
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ["es2015", "stage-0"],
+                    presets: ["@babel/preset-env"],
                 }
             }
         ]
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['*', '.js']
+        modules: ['src'],
+        extensions: ['.js']
     }
 };
